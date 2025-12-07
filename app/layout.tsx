@@ -1,6 +1,7 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/layout/AppSidebar";
 import "./globals.css";
+import Header from "@/components/layout/Header";
 
 export default function RootLayout({
   children,
@@ -12,9 +13,12 @@ export default function RootLayout({
       <body>
         <SidebarProvider>
           <AppSidebar />
-          <main>
+          <main className="w-full">
+            <div className="flex">
             <SidebarTrigger />
-            {children}
+            <Header />
+            </div>
+            <div className="p-4">{children}</div>
           </main>
         </SidebarProvider>
       </body>

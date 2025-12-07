@@ -18,10 +18,10 @@ import { LayoutDashboard, Boxes, Store, Settings } from "lucide-react";
 
 export function AppSidebar() {
   const menuItems = [
-    { title: "Dashboard", icon: LayoutDashboard, url: "/dashboard" },
-    { title: "Lista de Produtos", icon: Boxes, url: "/produtos" },
+    { title: "Dashboard", icon: LayoutDashboard, url: "/" },
+    { title: "Lista de Produtos", icon: Boxes, url: "/products" },
     { title: "Marketplaces", icon: Store, url: "/marketplaces" },
-    { title: "Configurações", icon: Settings, url: "/configuracoes" },
+    { title: "Configurações", icon: Settings, url: "/settings" },
   ];
 
   return (
