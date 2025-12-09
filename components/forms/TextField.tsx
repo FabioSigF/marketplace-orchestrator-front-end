@@ -1,38 +1,38 @@
-import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
+import {
+  Field,
+  FieldDescription,
+  FieldLabel,
+  FieldError,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 
-interface TextFieldProps {
+interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  type?: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
   description?: string;
   error?: boolean;
   errorMessage?: string;
 }
 
-// TextField Component
 export function TextField({
   label,
-  type = "text",
-  value,
-  onChange,
-  placeholder,
   description,
+  error,
+  errorMessage,
+  ...props
 }: TextFieldProps) {
   const inputId = label.toLowerCase().replace(/\s+/g, "-");
+
   return (
     <Field>
       <FieldLabel htmlFor={inputId}>{label}</FieldLabel>
+      {description && <FieldDescription>{description}</FieldDescription>}
       <Input
         id={inputId}
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
+        {...props}
+        placeholder={props.placeholder}
+        className="border-gray-200"
       />
-      {description && <FieldDescription>{description}</FieldDescription>}
+      {error && errorMessage && <FieldError>{errorMessage}</FieldError>}
     </Field>
   );
 }
