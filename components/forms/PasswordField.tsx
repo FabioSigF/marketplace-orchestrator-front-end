@@ -28,7 +28,7 @@ export default function PasswordField({
       <FieldLabel htmlFor={inputId}>{label}</FieldLabel>
       {description && <FieldDescription>{description}</FieldDescription>}
       <Input id={inputId} type="password" placeholder="••••••••" {...props} className="border-gray-200"/>
-      {error && errorMessage && <FieldError>{errorMessage}</FieldError>}
+      {error && errorMessage && <FieldError className="text-xs text-red-400">{errorMessage}</FieldError>}
     </Field>
   );
 }

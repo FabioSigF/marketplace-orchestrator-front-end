@@ -32,7 +32,7 @@ export function TextField({
         placeholder={props.placeholder}
         className="border-gray-200"
       />
-      {error && errorMessage && <FieldError>{errorMessage}</FieldError>}
+      {error && errorMessage && <FieldError className="text-xs text-red-400">{errorMessage}</FieldError>}
     </Field>
   );
 }
