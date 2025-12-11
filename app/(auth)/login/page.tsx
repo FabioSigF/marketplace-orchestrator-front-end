@@ -1,8 +1,6 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -39,7 +37,7 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
       <Card className="w-full max-w-sm bg-white shadow-md border-none">
         <CardHeader>
-          <CardTitle className="text-2xl font-semibold text-center">
+          <CardTitle className="text-xl font-semibold text-center">
             Login
           </CardTitle>
         </CardHeader>
