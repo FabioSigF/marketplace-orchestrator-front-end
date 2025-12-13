@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Product, ProductVariation } from "@/types/product";
+import { useRouter } from "next/navigation";
 
 interface ProductInfoProps {
   product: Product;
@@ -19,6 +20,8 @@ export default function ProductInfo({
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
 
+  const router = useRouter();
+
   const sizes = useMemo(() => {
     const set = new Set<string>();
     product.variations.forEach((v) => v.size && set.add(v.size));
@@ -34,12 +37,16 @@ export default function ProductInfo({
   // Filtragem inteligente
   const getIsSizeAvailable = (size: string) => {
     if (!selectedColor) return true;
-    return product.variations.some((v) => v.size === size && v.color === selectedColor);
+    return product.variations.some(
+      (v) => v.size === size && v.color === selectedColor
+    );
   };
 
   const getIsColorAvailable = (color: string) => {
     if (!selectedSize) return true;
-    return product.variations.some((v) => v.color === color && v.size === selectedSize);
+    return product.variations.some(
+      (v) => v.color === color && v.size === selectedSize
+    );
   };
 
   const handleSelectSize = (size: string) => {
@@ -59,7 +66,8 @@ export default function ProductInfo({
 
     const variation =
       product.variations.find(
-        (v) => v.size === newValue && (!selectedColor || v.color === selectedColor)
+        (v) =>
+          v.size === newValue && (!selectedColor || v.color === selectedColor)
       ) ?? product.variations[0];
 
     onSelectVariation(variation);
@@ -82,7 +90,8 @@ export default function ProductInfo({
 
     const variation =
       product.variations.find(
-        (v) => v.color === newValue && (!selectedSize || v.size === selectedSize)
+        (v) =>
+          v.color === newValue && (!selectedSize || v.size === selectedSize)
       ) ?? product.variations[0];
 
     onSelectVariation(variation);
@@ -93,8 +102,8 @@ export default function ProductInfo({
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
-          <h1 className="text-3xl font-semibold">{product.title}</h1>
-          <p className="text-muted-foreground">{product.sku}</p>
+          <h1 className="text-xl font-semibold">{product.title}</h1>
+          <p className="text-sm text-muted-foreground">{product.sku}</p>
 
           <div className="mt-2">
             <Badge className="bg-gray-100 text-gray-700 px-3 py-2 rounded-md">
@@ -104,14 +113,18 @@ export default function ProductInfo({
           </div>
         </div>
 
-        <Button variant="outline" className="shadow-sm border-gray-200 border bg-primary text-white hover:bg-primary/90 hover:text-white">
+        <Button
+          variant="outline"
+          className="shadow-sm border-gray-200 border bg-primary text-white hover:bg-primary/90 hover:text-white"
+          onClick={() => router.push(`/products/${product.id}/edit`)}
+        >
           Editar
         </Button>
       </div>
 
       {/* Price */}
       <div>
-        <h2 className="text-4xl font-bold">{formattedPrice}</h2>
+        <h2 className="text-3xl font-bold">{formattedPrice}</h2>
         <div className="mt-2">
           <Badge className="bg-gray-100 text-gray-700 px-3 py-2 rounded-md">
             Estoque da variação: {selectedVariation.stock ?? 0}
@@ -136,8 +149,16 @@ export default function ProductInfo({
                     px-4 py-2 rounded-md border text-sm
                     border-gray-200
                     transition-all
-                    ${selectedSize === size ? "bg-primary text-white hover:bg-primary/90" : ""}
-                    ${!available ? "opacity-40 cursor-not-allowed" : "hover:bg-gray-100"}
+                    ${
+                      selectedSize === size
+                        ? "bg-primary text-white hover:bg-primary/90"
+                        : ""
+                    }
+                    ${
+                      !available
+                        ? "opacity-40 cursor-not-allowed"
+                        : "hover:bg-gray-100"
+                    }
                   `}
                 >
                   {size}
@@ -162,8 +183,16 @@ export default function ProductInfo({
                     px-4 py-2 rounded-md border text-sm
                     border-gray-200
                     transition-all
-                    ${selectedColor === color ? "bg-primary text-white hover:bg-primary/90" : ""}
-                    ${!available ? "opacity-40 cursor-not-allowed" : "hover:bg-gray-100"}
+                    ${
+                      selectedColor === color
+                        ? "bg-primary text-white hover:bg-primary/90"
+                        : ""
+                    }
+                    ${
+                      !available
+                        ? "opacity-40 cursor-not-allowed"
+                        : "hover:bg-gray-100"
+                    }
                   `}
                 >
                   {color}
@@ -176,7 +205,7 @@ export default function ProductInfo({
 
       {/* DESCRIPTION */}
       <div className="prose prose-sm max-w-none">
-        <h3 className="font-semibold text-lg">Descrição</h3>
+        <h3 className="text-lg">Descrição</h3>
         <p className="text-muted-foreground whitespace-pre-line">
           {product.description}
         </p>

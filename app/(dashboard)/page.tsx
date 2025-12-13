@@ -26,7 +26,7 @@ export default function Dashboard() {
 
   return (
     <div>
-      <ProductTable products={mockProducts} />;
+      <ProductTable products={mockProducts} />
     </div>
   );
 }

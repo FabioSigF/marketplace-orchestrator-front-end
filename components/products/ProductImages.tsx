@@ -23,7 +23,7 @@ export default function ProductImages({
   return (
     <div className="w-full space-y-8">
       {/* IMAGE PRINCIPAL */}
-      <Card className="border border-gray-200 rounded-lg shadow-md overflow-hidden bg-white">
+      <Card className="border border-gray-200 rounded-lg shadow-md overflow-hidden bg-white py-0">
         <CardContent className="p-0">
           <AspectRatio ratio={1} className="relative">
             <Image

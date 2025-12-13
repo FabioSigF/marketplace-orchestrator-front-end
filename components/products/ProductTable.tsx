@@ -37,6 +37,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Image from "next/image";
+import { Plus } from "lucide-react";
 
 export type Product = {
   id: string; // usado na navegação
@@ -162,7 +163,9 @@ export const columns: ColumnDef<Product>[] = [
       return (
         <span className="flex items-center gap-2">
           <div className={`h-2 w-2 rounded-full ${bgColor}`}></div>
-          <span className={`capitalize font-medium ${color}`}>{statusName}</span>
+          <span className={`capitalize font-medium ${color}`}>
+            {statusName}
+          </span>
         </span>
       );
     },
@@ -251,7 +254,7 @@ export function ProductTable({ products }: ProductTableProps) {
         {/* COLUMN SETTINGS */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto border-gray-200">
+            <Button variant="outline" className="ml-auto mr-4 border-gray-200">
               Colunas <ChevronDown />
             </Button>
           </DropdownMenuTrigger>
@@ -272,6 +275,14 @@ export function ProductTable({ products }: ProductTableProps) {
               ))}
           </DropdownMenuContent>
         </DropdownMenu>
+
+        <Button
+          onClick={() => router.push("/products/new")}
+          className="flex items-center gap-2"
+        >
+          <Plus className="h-4 w-4" />
+          Criar produto
+        </Button>
       </div>
 
       {/* TABLE */}

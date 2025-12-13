@@ -5,6 +5,7 @@ import React, { useMemo, useState } from "react";
 import type { Product, ProductVariation } from "@/types/product";
 import ProductImages from "./ProductImages";
 import ProductInfo from "./ProductInfo";
+import { Card } from "../ui/card";
 
 interface ProductClientProps {
   product: Product;
@@ -32,21 +33,22 @@ export default function ProductClient({ product }: ProductClientProps) {
   return (
     <div
       className="
-        flex flex-col gap-10 
-        sm:gap-12 
+        flex flex-col gap-6
+        sm:gap-6
         lg:flex-row 
         lg:items-start 
-        lg:gap-16
+        lg:gap-6
         w-full
       "
     >
       {/* Left section: Images */}
-      <div
+      <Card
         className="
           w-full 
           lg:w-4/10 
           shrink-0
           relative
+          px-6
         "
       >
         <ProductImages
@@ -54,12 +56,13 @@ export default function ProductClient({ product }: ProductClientProps) {
           selectedVariation={selectedVariation}
           onSelectVariation={setSelectedVariation}
         />
-      </div>
+      </Card>
 
       {/* Right section: Info */}
-      <div
+      <Card
         className="
           w-full 
+          px-6
         "
       >
         <ProductInfo
@@ -68,7 +71,7 @@ export default function ProductClient({ product }: ProductClientProps) {
           formattedPrice={formattedPrice}
           onSelectVariation={setSelectedVariation}
         />
-      </div>
+      </Card>
     </div>
   );
 }
