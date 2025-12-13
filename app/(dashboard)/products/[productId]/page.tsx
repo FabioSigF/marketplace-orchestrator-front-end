@@ -42,7 +42,7 @@ export default async function DashboardProductsProductId(props: {
 
   // send product to the client component (no hooks here)
   return (
-    <main className="p-6">
+    <main>
       <ProductClient product={product} />
     </main>
   );

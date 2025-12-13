@@ -21,7 +21,7 @@ export default function ProductImages({
   const mainImage = `https://picsum.photos/800/800?random=${selectedVariation.sku}`;
 
   return (
-    <div className="w-full lg:w-1/2 space-y-4">
+    <div className="w-full space-y-8">
       {/* IMAGE PRINCIPAL */}
       <Card className="border border-gray-200 rounded-lg shadow-md overflow-hidden bg-white">
         <CardContent className="p-0">

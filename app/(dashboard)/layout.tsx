@@ -17,7 +17,7 @@ export default function DashboardLayout({
                 <SidebarTrigger />
                 <Header />
               </div>
-              <div className="p-4">{children}</div>
+              <div className="pl-7 pr-4 pt-4 pb-4">{children}</div>
             </main>
           </SidebarProvider>
         </div>

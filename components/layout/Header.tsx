@@ -11,7 +11,7 @@ export default function Header() {
         <Input
           type="text"
           placeholder="Buscar..."
-          className="pl-10 border-gray-300 w-full"
+          className="pl-10 border-gray-200 w-full"
         />
       </div>
     </header>

@@ -37,18 +37,16 @@ export default function ProductClient({ product }: ProductClientProps) {
         lg:flex-row 
         lg:items-start 
         lg:gap-16
-        max-w-7xl 
-        mx-auto 
         w-full
-        px-4 sm:px-6 lg:px-8
       "
     >
       {/* Left section: Images */}
       <div
         className="
           w-full 
-          lg:w-1/2 
+          lg:w-4/10 
           shrink-0
+          relative
         "
       >
         <ProductImages
@@ -62,8 +60,6 @@ export default function ProductClient({ product }: ProductClientProps) {
       <div
         className="
           w-full 
-          lg:w-1/2 
-          shrink-0
         "
       >
         <ProductInfo

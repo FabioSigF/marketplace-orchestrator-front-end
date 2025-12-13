@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react";
-import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Product, ProductVariation } from "@/types/product";
@@ -90,7 +89,7 @@ export default function ProductInfo({
   };
 
   return (
-    <div className="w-full lg:w-1/2 space-y-8">
+    <div className="w-full space-y-10">
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
@@ -98,37 +97,33 @@ export default function ProductInfo({
           <p className="text-muted-foreground">{product.sku}</p>
 
           <div className="mt-2">
-            <Badge className="bg-gray-200 text-gray-700">
+            <Badge className="bg-gray-100 text-gray-700 px-3 py-2 rounded-md">
               Estoque geral:{" "}
               {product.variations.reduce((sum, v) => sum + (v.stock ?? 0), 0)}
             </Badge>
           </div>
         </div>
 
-        <Button variant="outline" className="shadow-sm">
+        <Button variant="outline" className="shadow-sm border-gray-200 border bg-primary text-white hover:bg-primary/90 hover:text-white">
           Editar
         </Button>
       </div>
-
-      <Separator />
 
       {/* Price */}
       <div>
         <h2 className="text-4xl font-bold">{formattedPrice}</h2>
         <div className="mt-2">
-          <Badge className="bg-gray-100 text-gray-600">
+          <Badge className="bg-gray-100 text-gray-700 px-3 py-2 rounded-md">
             Estoque da variação: {selectedVariation.stock ?? 0}
           </Badge>
         </div>
       </div>
 
-      <Separator />
-
       {/* VARIAÇÕES */}
       <div className="space-y-6">
         {/* SIZE */}
         <div>
-          <p className="font-medium mb-2">Tamanho</p>
+          <p className="font-medium mb-2">Tamanho:</p>
           <div className="flex flex-wrap gap-2">
             {sizes.map((size) => {
               const available = getIsSizeAvailable(size);
@@ -139,8 +134,9 @@ export default function ProductInfo({
                   onClick={() => available && handleSelectSize(size)}
                   className={`
                     px-4 py-2 rounded-md border text-sm
+                    border-gray-200
                     transition-all
-                    ${selectedSize === size ? "bg-primary text-white" : ""}
+                    ${selectedSize === size ? "bg-primary text-white hover:bg-primary/90" : ""}
                     ${!available ? "opacity-40 cursor-not-allowed" : "hover:bg-gray-100"}
                   `}
                 >
@@ -153,7 +149,7 @@ export default function ProductInfo({
 
         {/* COLOR */}
         <div>
-          <p className="font-medium mb-2">Cor</p>
+          <p className="font-medium mb-2">Cor:</p>
           <div className="flex flex-wrap gap-2">
             {colors.map((color) => {
               const available = getIsColorAvailable(color);
@@ -164,8 +160,9 @@ export default function ProductInfo({
                   onClick={() => available && handleSelectColor(color)}
                   className={`
                     px-4 py-2 rounded-md border text-sm
+                    border-gray-200
                     transition-all
-                    ${selectedColor === color ? "bg-primary text-white" : ""}
+                    ${selectedColor === color ? "bg-primary text-white hover:bg-primary/90" : ""}
                     ${!available ? "opacity-40 cursor-not-allowed" : "hover:bg-gray-100"}
                   `}
                 >
@@ -176,8 +173,6 @@ export default function ProductInfo({
           </div>
         </div>
       </div>
-
-      <Separator />
 
       {/* DESCRIPTION */}
       <div className="prose prose-sm max-w-none">
