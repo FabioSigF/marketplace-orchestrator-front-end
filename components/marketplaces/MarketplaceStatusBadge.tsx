@@ -1,7 +1,22 @@
-export default function MarketplaceStatusBadge() {
+import { cn } from "@/lib/utils/cn";
+import { CONNECTION_STATUS_CONFIG } from "@/config/marketplace-status.config";
+import { MarketplaceConnectionStatus } from "@/types/marketplace";
+
+interface Props {
+  status: MarketplaceConnectionStatus;
+}
+
+export function MarketplaceStatusBadge({ status }: Props) {
+  const config = CONNECTION_STATUS_CONFIG[status];
+
   return (
-    <div>
-      <h1>MarketplaceStatusBadge</h1>
-    </div>
+    <span
+      className={cn(
+        "rounded-full px-3 py-1 text-xs font-medium",
+        config.className
+      )}
+    >
+      {config.label}
+    </span>
   );
 }
