@@ -18,15 +18,26 @@ import { MarketplaceSyncTab } from "@/components/marketplaces/tabs/MarketplaceSy
 import { MarketplaceLogsTab } from "@/components/marketplaces/tabs/MarketplaceLogsTab";
 import { MarketplacePermissionsTab } from "@/components/marketplaces/tabs/MarketplacePermissionsTab";
 
+import {
+  MarketplaceHeaderData,
+  MarketplaceOverviewData,
+} from "@/types/marketplace";
+
 export default function MarketplacePage() {
   const { marketplaceId } = useParams<{ marketplaceId: string }>();
   const [activeTab, setActiveTab] = useState<MarketplaceTab>("overview");
 
-  // 🔹 Mock (substituir por API depois)
-  const marketplaceData = {
-    status: "connected" as const,
+  // 🔹 MOCK (equivalente à resposta da API)
+  const headerData: MarketplaceHeaderData = {
+    status: "connected",
     lastSync: "2025-12-14T14:30:00Z",
-    syncStatus: "in_progress" as const,
+    syncStatus: "in_progress",
+  };
+
+  const overviewData: MarketplaceOverviewData = {
+    integratedProductsCount: 124,
+    activeProductsCount: 118,
+    inactiveProductsCount: 6,
   };
 
   return (
@@ -39,13 +50,12 @@ export default function MarketplacePage() {
               {marketplaceId}
             </h2>
 
-            <MarketplaceStatusBadge status={marketplaceData.status} />
+            <MarketplaceStatusBadge status={headerData.status} />
           </div>
 
-          {/* 🔥 COMPONENTE REUTILIZÁVEL */}
           <SyncStatus
-            lastSync={marketplaceData.lastSync}
-            status={marketplaceData.syncStatus}
+            lastSync={headerData.lastSync}
+            status={headerData.syncStatus}
           />
         </CardHeader>
       </Card>
@@ -54,7 +64,10 @@ export default function MarketplacePage() {
       <MarketplaceTabs value={activeTab} onChange={setActiveTab} />
 
       {/* ===== CONTENT ===== */}
-      {activeTab === "overview" && <MarketplaceOverviewTab />}
+      {activeTab === "overview" && (
+        <MarketplaceOverviewTab overview={overviewData} />
+      )}
+
       {activeTab === "settings" && <MarketplaceSettingsTab />}
       {activeTab === "sync" && <MarketplaceSyncTab />}
       {activeTab === "logs" && <MarketplaceLogsTab />}

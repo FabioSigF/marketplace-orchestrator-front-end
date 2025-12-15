@@ -8,7 +8,19 @@ export type MarketplaceConnectionStatus =
   | "success"
   | "error";
 
-export interface Marketplace {
+export interface MarketplaceOverviewData {
+  integratedProductsCount: number;
+  activeProductsCount: number;
+  inactiveProductsCount: number;
+}
+
+export interface MarketplaceHeaderData {
+  status: MarketplaceConnectionStatus;
+  lastSync: string;
+  syncStatus: MarketplaceSyncStatus;
+}
+
+  export interface Marketplace {
   id: string;
   name: string;
   status: MarketplaceConnectionStatus;

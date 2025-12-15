@@ -1,25 +1,20 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { MarketplaceProductsSummary } from "@/components/marketplaces/MarketplaceProductsSummary";
+import { MarketplaceOverviewData } from "@/types/marketplace";
 
-export function MarketplaceOverviewTab() {
+interface MarketplaceOverviewTabProps {
+  overview: MarketplaceOverviewData;
+}
+
+export function MarketplaceOverviewTab({
+  overview,
+}: MarketplaceOverviewTabProps) {
   return (
-    <Card>
-      <CardContent className="space-y-4">
-        <h3 className="font-medium">Visão geral</h3>
-
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div>
-            <p className="text-sm text-muted-foreground">Status</p>
-            <p className="font-medium">Conectado</p>
-          </div>
-
-          <div>
-            <p className="text-sm text-muted-foreground">
-              Última sincronização
-            </p>
-            <p className="font-medium">Há 10 minutos</p>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
+    <div className="grid gap-6 md:grid-cols-3">
+      <MarketplaceProductsSummary
+        total={overview.integratedProductsCount}
+        active={overview.activeProductsCount}
+        inactive={overview.inactiveProductsCount}
+      />
+    </div>
   );
 }
