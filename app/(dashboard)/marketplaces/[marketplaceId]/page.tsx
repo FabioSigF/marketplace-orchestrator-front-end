@@ -16,7 +16,7 @@ import { MarketplaceOverviewTab } from "@/components/marketplaces/tabs/Marketpla
 import { MarketplaceSettingsTab } from "@/components/marketplaces/tabs/MarketplaceSettingsTab";
 import { MarketplaceSyncTab } from "@/components/marketplaces/tabs/MarketplaceSyncTab";
 import { MarketplaceLogsTab } from "@/components/marketplaces/tabs/MarketplaceLogsTab";
-import { MarketplacePermissionsTab } from "@/components/marketplaces/tabs/MarketplacePermissionsTab";
+
 
 import {
   MarketplaceHeaderData,
@@ -71,7 +71,6 @@ export default function MarketplacePage() {
       {activeTab === "settings" && <MarketplaceSettingsTab />}
       {activeTab === "sync" && <MarketplaceSyncTab />}
       {activeTab === "logs" && <MarketplaceLogsTab />}
-      {activeTab === "permissions" && <MarketplacePermissionsTab />}
     </div>
   );
 }

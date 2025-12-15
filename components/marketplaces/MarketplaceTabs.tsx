@@ -7,7 +7,6 @@ export type MarketplaceTab =
   | "settings"
   | "sync"
   | "logs"
-  | "permissions";
 
 interface MarketplaceTabsProps {
   value: MarketplaceTab;
@@ -22,7 +21,6 @@ export function MarketplaceTabs({ value, onChange }: MarketplaceTabsProps) {
         <TabsTrigger value="settings">Configurações</TabsTrigger>
         <TabsTrigger value="sync">Sincronização</TabsTrigger>
         <TabsTrigger value="logs">Logs</TabsTrigger>
-        <TabsTrigger value="permissions">Permissões</TabsTrigger>
       </TabsList>
     </Tabs>
   );
