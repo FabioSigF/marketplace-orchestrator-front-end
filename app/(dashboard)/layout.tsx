@@ -1,27 +1,29 @@
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/layout/AppSidebar";
-import Header from "@/components/layout/Header";
-export default function DashboardLayout({
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/layout/AppSidebar"
+
+export default function Layout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="pt-BR">
       <body>
-        <div>
-          <SidebarProvider>
-            <AppSidebar />
-            <main className="w-full">
-              <div className="flex">
-                <SidebarTrigger />
-                <Header />
-              </div>
-              <div className="pl-7 pr-4 pt-4 pb-4">{children}</div>
-            </main>
-          </SidebarProvider>
-        </div>
+        <SidebarProvider>
+          {/* Sidebar */}
+          <AppSidebar />
+
+          {/* Conteúdo principal */}
+          <div className="flex flex-1 flex-col">
+            <header className="flex h-14 items-center gap-2 border-b px-4">
+              <SidebarTrigger />
+              <span className="font-medium">Dashboard</span>
+            </header>
+
+            <main className="flex-1 p-6">{children}</main>
+          </div>
+        </SidebarProvider>
       </body>
     </html>
-  );
+  )
 }

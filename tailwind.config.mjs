@@ -1,12 +1,23 @@
 /** @type {import('tailwindcss').Config} */
+
+import animate from "tailwindcss-animate";
+
 module.exports = {
   darkMode: ["class"],
-  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
+  content: [
+    "./app/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./lib/**/*.{ts,tsx}",
+  ],
   theme: {
     extend: {
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+
+        sidebar: "hsl(var(--sidebar))",
+        "sidebar-foreground": "hsl(var(--sidebar-foreground))",
+        "sidebar-border": "hsl(var(--sidebar-border))",
 
         card: {
           DEFAULT: "hsl(var(--card))",
@@ -39,5 +50,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [animate],
 };

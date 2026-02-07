@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils/cn";
+import { cn } from "@/lib/utils";
 import { CONNECTION_STATUS_CONFIG } from "@/config/marketplace-status.config";
 import { MarketplaceConnectionStatus } from "@/types/marketplace";
 
