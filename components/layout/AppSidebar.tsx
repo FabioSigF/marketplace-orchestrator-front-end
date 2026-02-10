@@ -1,20 +1,8 @@
 "use client";
 
-import {
-  Sidebar,
-  SidebarHeader,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupLabel,
-  SidebarGroupContent,
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarMenuButton,
-  SidebarFooter,
-} from "@/components/ui/sidebar";
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { LayoutDashboard, Boxes, Store, Settings } from "lucide-react";
+import Link from "next/link";
 
 export function AppSidebar() {
   const menuItems = [
@@ -25,73 +13,59 @@ export function AppSidebar() {
   ];
 
   return (
-    <Sidebar
-      collapsible="icon"
-    >
+    <aside className="flex h-screen w-64 flex-col border-r bg-background">
       {/* HEADER */}
-      <SidebarHeader className="border-b border-sidebar-border">
-        <div className="flex items-center gap-3 px-3 py-2">
-          <img
-            src="/logo.png"
-            alt="Logo"
-            className="w-8 h-8 rounded-md object-cover"
-          />
-          <span className="font-semibold text-lg group-data-[collapsible=icon]:hidden">
-            Orchestrator
-          </span>
-        </div>
-      </SidebarHeader>
+      <div className="flex items-center gap-3 border-b px-4 py-3 h-14">
+        <img
+          src="/logo.png"
+          alt="Logo"
+          className="h-7 w-7 rounded-md object-cover"
+        />
+        <span className="text-lg font-semibold">Orchestrator</span>
+      </div>
 
-      {/* CONTENT */}
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel className="group-data-[collapsible=icon]:hidden">
-            Menu
-          </SidebarGroupLabel>
+      {/* MENU */}
+      <nav className="flex-1 p-3">
+        <span className="mb-2 block text-xs font-medium text-muted-foreground">
+          Menu
+        </span>
 
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {menuItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton
-                    asChild
-                    tooltip={item.title}
-                  >
-                    <a href={item.url} className="flex items-center gap-2">
-                      <item.icon className="h-4 w-4" />
-                      <span className="group-data-[collapsible=icon]:hidden">
-                        {item.title}
-                      </span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarContent>
+        <ul className="space-y-1">
+          {menuItems.map((item) => (
+            <li key={item.title}>
+              <Link
+                href={item.url}
+                className="flex items-center gap-3 rounded-md px-3 py-2 text-sm hover:bg-accent"
+              >
+                <item.icon className="h-4 w-4" />
+                {item.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
 
       {/* FOOTER */}
-      <SidebarFooter className="border-t border-sidebar-border">
-        <div className="flex items-center gap-3 p-3">
+      <div className="border-t p-4">
+        <div className="flex items-center gap-3">
           <Avatar className="h-8 w-8">
             <AvatarImage src="/user.jpg" />
             <AvatarFallback>FF</AvatarFallback>
           </Avatar>
 
-          <div className="flex flex-col group-data-[collapsible=icon]:hidden">
+          <div className="flex flex-col">
             <span className="text-sm font-medium">Fabio Freitas</span>
             <div className="flex gap-3 text-xs text-muted-foreground">
-              <a href="/perfil" className="hover:underline">
+              <Link href="/perfil" className="hover:underline">
                 Perfil
-              </a>
-              <a href="/logout" className="hover:underline">
+              </Link>
+              <Link href="/logout" className="hover:underline">
                 Logout
-              </a>
+              </Link>
             </div>
           </div>
         </div>
-      </SidebarFooter>
-    </Sidebar>
+      </div>
+    </aside>
   );
 }
